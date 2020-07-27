@@ -1,10 +1,4 @@
-.idea
-build
-dist
-pyintelowl.egg-info
-venv/
-test_files/
-*.exe
-__pycache__
-.vscode
-api_token_value.txt
+test_files/	test_files/
+*.exe	*.exe
+__pycache__	__pycache__
+.vscode 
