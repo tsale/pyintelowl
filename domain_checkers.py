@@ -401,7 +401,7 @@ class Hybrid:
                 try:
                     for i in self.text['domain_siblings']:
                         print("\t\t====>".ljust(28), end=' ')
-                        print(self.text['domain_siblings'][i])
+                        print(i)
                 except KeyError:
                     pass
 
@@ -426,25 +426,25 @@ class Hybrid:
                     print(MyColors.Foreground.orange + "\nResults found: {}".format(self.text["count"]))
                     print("-" * 28)
                     for i in results:
-                        if results[i]['verdict'] is not None:
+                        if i['verdict'] is not None:
                             print(MyColors.Foreground.orange, "Verdict\t=> ", MyColors.Foreground.lightred,
-                                  results[i]['verdict'])
-                        if results[i]['av_detect'] is not None:
+                                  i['verdict'])
+                        if i['av_detect'] is not None:
                             print(MyColors.Foreground.orange, "AV Detect\t=> ", MyColors.Foreground.lightred,
-                                  results[i]['av_detect'])
-                        if results[i]['vx_family'] is not None:
+                                  i['av_detect'])
+                        if i['vx_family'] is not None:
                             print(MyColors.Foreground.orange, "Mal Family\t=> ", MyColors.Foreground.lightred,
-                                  results[i]['vx_family'])
-                        if results[i]['submit_name'] is not None:
+                                  i['vx_family'])
+                        if i['submit_name'] is not None:
                             print(MyColors.Foreground.orange, "FileName\t=> ", MyColors.Foreground.lightred,
-                                  results[i]['submit_name'])
-                        if results[i]['type_short'] is not None:
+                                  i['submit_name'])
+                        if i['type_short'] is not None:
                             print(MyColors.Foreground.orange,
                                   "FileType\t=> ", MyColors.Foreground.lightred,
-                                  results[i]['type_short'])
-                        if results[i]['sha256']:
+                                  i['type_short'])
+                        if i['sha256']:
                             print(MyColors.Foreground.orange, "SHA256\t=> ", MyColors.Foreground.lightred,
-                                  results[i]['sha256'] + "\n")
+                                  i['sha256'] + "\n")
                 else:
                     print(MyColors.Foreground.lightred + "\nNo results found for HYBRIDANALYSIS")
 
@@ -606,17 +606,17 @@ class IPs:
             records = self.text['records']
             try:
                 for i in records:
-                    if records[i]['name'] is not None:
-                        print("\nRecord:\t=>\t{}".format((records[i]['name'])))
-                    if records[i]['metadata'] is not None:
+                    if i['name'] is not None:
+                        print("\nRecord:\t=>\t{}".format((i['name'])))
+                    if i['metadata'] is not None:
                         print("".ljust(20), end=' ')
-                        print("Tor:\t=>\t{}".format((records[i]['metadata']['tor'])))
-                    if records[i]['confidence'] is not None:
+                        print("Tor:\t=>\t{}".format((i['metadata']['tor'])))
+                    if i['confidence'] is not None:
                         print("".ljust(20), end=' ')
-                        print("Confidence:\t=>\t{}".format((records[i]['confidence'])))
-                    if records[i]['last_updated'] is not None:
+                        print("Confidence:\t=>\t{}".format((i['confidence'])))
+                    if i['last_updated'] is not None:
                         print("".ljust(20), end=' ')
-                        print("Last_updated:\t=>\t{}".format((records[i]['last_updated'])))
+                        print("Last_updated:\t=>\t{}".format(i['last_updated']))
             except KeyError:
                 pass
 
@@ -689,7 +689,7 @@ class Hashes:
                 print("_" * 9 + "\n")
                 for i in tags:
                     print("\t\t====>".ljust(28), end=' ')
-                    print(MyColors.Foreground.orange, tags[i], MyColors.reset)
+                    print(MyColors.Foreground.orange, i, MyColors.reset)
             if self.text['attributes']['names']:
                 names = self.text['attributes']['names']
                 print("-" * 120)
@@ -697,7 +697,7 @@ class Hashes:
                 print("_" * 20 + "\n")
                 for i in names:
                     print("\t\t====>".ljust(28), end=' ')
-                    print(MyColors.Foreground.orange, names[i], MyColors.reset)
+                    print(MyColors.Foreground.orange, i, MyColors.reset)
             print("\n")
         except KeyError:
             pass
@@ -730,7 +730,7 @@ class Hashes:
             try:
                 for i in data:
                     print("\t\t====>".ljust(28), end=' ')
-                    print(MyColors.Foreground.orange, data[i]['context_attributes']['url'], MyColors.reset)
+                    print(MyColors.Foreground.orange, i['context_attributes']['url'], MyColors.reset)
                 print("\n")
             except KeyError:
                 pass
@@ -749,7 +749,7 @@ class Hashes:
             try:
                 for i in data:
                     print("\t\t====>".ljust(28), end=' ')
-                    print(MyColors.Foreground.orange, data[i]['id'])
+                    print(MyColors.Foreground.orange, i['id'])
             except KeyError:
                 pass
         else:
@@ -768,30 +768,30 @@ class Hashes:
                     print("".ljust(28), end=' ')
                     print("-" * 20, MyColors.reset)
 
-                    print("FileName => " + MyColors.Foreground.orange + self.text[i]['submit_name'], MyColors.reset)
+                    print("FileName => " + MyColors.Foreground.orange + i['submit_name'], MyColors.reset)
 
-                    if self.text[i]['verdict'] is not None:
-                        print("Verdict => " + MyColors.Foreground.orange + self.text[i]['verdict'], MyColors.reset)
+                    if i['verdict'] is not None:
+                        print("Verdict => " + MyColors.Foreground.orange + i['verdict'], MyColors.reset)
 
-                    if self.text[i]['submissions'] is not None:
+                    if i['submissions'] is not None:
                         print("Number of submissions => ", MyColors.Foreground.orange,
-                              len(self.text[i]['submissions']),
+                              len(i['submissions']),
                               MyColors.reset)
 
-                    if self.text[i]['type_short'] is not None:
+                    if i['type_short'] is not None:
                         print(
-                            "FileType => " + MyColors.Foreground.orange + f"{self.text[i]['type_short']}",
+                            "FileType => " + MyColors.Foreground.orange + f"{i['type_short']}",
                             MyColors.reset)
 
-                    if self.text[i]['av_detect'] is not None:
-                        print("AV Detect => " + MyColors.Foreground.orange, self.text[i]['av_detect'], MyColors.reset)
+                    if i['av_detect'] is not None:
+                        print("AV Detect => " + MyColors.Foreground.orange, i['av_detect'], MyColors.reset)
 
-                    if self.text[i]['vx_family'] is not None:
-                        print("Mal Family => " + MyColors.Foreground.orange + self.text[i]['vx_family'],
+                    if i['vx_family'] is not None:
+                        print("Mal Family => " + MyColors.Foreground.orange + i['vx_family'],
                               MyColors.reset)
 
-                    if self.text[i]['environment_description'] is not None:
-                        print("Analysis environment => ".ljust(28) + MyColors.Foreground.orange + self.text[i][
+                    if i['environment_description'] is not None:
+                        print("Analysis environment => ".ljust(28) + MyColors.Foreground.orange + i[
                             'environment_description'] + "\n")
             else:
                 print(MyColors.Foreground.lightred + "No results found in HybridAnalysis!\n")
